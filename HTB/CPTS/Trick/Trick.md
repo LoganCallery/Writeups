@@ -44,7 +44,7 @@ We can additionally confirm that the target machine is running linux.
 
 <h3>Web Recon</h3>
 
-Visiting the target ip on port 80 using firefox we see the a website homepage with text saying "Our Website is Coming Soon" along with a form filed to enter in an email address:
+Visiting the target ip on port 80 using firefox we see the website homepage with text saying "Our Website is Coming Soon" along with a form filed to enter in an email address:
 
 ![alt text](image-1.png)
 

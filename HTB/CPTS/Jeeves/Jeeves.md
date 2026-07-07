@@ -97,7 +97,7 @@ From this we can see that the commands are being run as `jeeves\kohsuke` so the 
 
 so we now have the ability to run arbitrary command on the target machine as the `kohsuke` user. Lets use this to gain a reverse shell!
 
-For the reverse shell command we will use a bas64 encoded shell from [revshells](https://www.revshells.com/) a very useful website for generating reverse shell commands:
+For the reverse shell command we will use a base64 encoded shell from [revshells](https://www.revshells.com/) a very useful website for generating reverse shell commands:
 
 ![revshell](image-10.png)
 
@@ -113,7 +113,7 @@ Doing some file enumeration we find a `KeePass` .kdbx database file in `C:\Users
 
 ![CEH.kdbx file location](image-12.png)
 
-Lets trannsfer this file over to put attack machine by first setting up an smb server on our attack machine using the command:
+Lets transfer this file over to put attack machine by first setting up an smb server on our attack machine using the command:
 
 ```
 impacket-smbserver test . -smb2support  -username test -password test
