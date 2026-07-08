@@ -26,7 +26,7 @@ This gave me the open tcp ports running on the target machine as well as the ser
 
 From the nmap results we can see multiple open ports running services such as LDAP, Kerberos, SMB, and WinRM.
 
-Additionally we can see import and domain info such as the target machine has the hostname of `DC01` indicating that it is a domain controller, and that the domain is `fluffy.htb`:
+Additionally we can see important domain info such as the target machine has the hostname of `DC01` indicating that it is a domain controller, and that the domain is `fluffy.htb`:
 
 ```
 Starting Nmap 7.99 ( https://nmap.org ) at 2026-06-19 20:18 -0700
