@@ -24,7 +24,7 @@ sudo nmap -sT -sV -T4 10.129.228.112 -oN nmap
 
 This gave me the open tcp ports running on the target machine as well as the services running on those ports. The `-oN nmap` flag and argument means that the output will also be written to a file titled `nmap`.
 
-From the nmap results we can see that the target machine is running an http server onf port 80, an smbshare on 445 and another http server on 50000 running `Jetty 9.4.z-SNAPSHOT`.
+From the nmap results we can see that the target machine is running an http server on port 80, an smbshare on 445 and another http server on 50000 running `Jetty 9.4.z-SNAPSHOT`.
 
 ```
 Starting Nmap 7.99 ( https://nmap.org ) at 2026-06-25 15:51 -0700
