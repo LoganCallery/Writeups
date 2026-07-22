@@ -73,7 +73,7 @@ Host script results:
 |_    Message signing enabled and required
 ```
 
-Additionally the http server lists two names for the url `Subject Alternative Name: DNS:streamIO.htb, DNS:watch.streamIO.htb` do let's add these domains to our /etc/hosts file.
+Additionally the http server lists two names for the url `Subject Alternative Name: DNS:streamIO.htb, DNS:watch.streamIO.htb` so let's add these domains to our /etc/hosts file.
 
 Visiting the `streamio.htb` url we are greeted with the homepage for an `Online Movie Streaming` site:
 
@@ -171,7 +171,7 @@ Lets right click on the request and select `copy as curl` and attempt to use `sq
 
 Running the SQLMap tool we see that we are redirected to the `blocked.php` page from earlier indicating that there is some sort of WAF (Web Application Firewall) in place.
 
-This does not mean that an SQL Injection attack is not possible just that we cannot use a noisy high traffic tool such as SQLMap. So lets try and do some manual enumeration:
+This does not mean that an SQL Injection attack is not possible, just that we cannot use a noisy high traffic tool such as SQLMap. So lets try and do some manual enumeration:
 
 <h3>Manual SQL Injection</h3>
 Using a `Union select` attack we can enumerate the number of columns present in the database table and which ones are displayed in the search results. The command:
@@ -236,7 +236,7 @@ The `users` table looks promising so lets attempt to list the column of the tabl
 
 ![Users Columns](image-17.png)
 
-Okay great! Now lets see if we can see the `username` and `password` columns using the query:
+Okay great! Now let's see if we can see the `username` and `password` columns using the query:
 
 ```
 1408' UNION select 1,CONCAT(username, ':', password),3,4,5,6 FROM users-- 
