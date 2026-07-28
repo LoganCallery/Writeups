@@ -258,9 +258,8 @@ In order to get decrypt the credentials we will be using `impacket-dpapi`.
 The first step in this process is to unlock the master key using the users SID and password:
 
 ```
-impacket-dpapi masterkey -file 08949382-134f-4c63-b93c-ce52efc0aa88 -sid S-1-5-21-3927696377-1337352550-2781715495-1110 -password NightT1meP1dg3on14
+impacket-dpapi masterkey -file 08949382-134f-4c63-b93c-ce52efc0aa88 -sid S-1-5-21-3927696377-1337352550-2781715495-1110 -password <PASSWORD>
 ```
-
 ![Master Key unlocked](image-19.png)
 
 Make note of the `Decrypted key` as we will be using that the decrypt the credential file:
