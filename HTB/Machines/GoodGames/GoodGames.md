@@ -82,7 +82,7 @@ Going back to the login form we find something interesting, if we try to login w
 
 ![Wrong Password 500 Response](image-9.png)
 
-However if we include a single quite in the email then we are redirected to the sign up page indicating that the ' altered how the back end processed the username. This tells us that the email field is potentially vulnerable to `SQL Injection`.
+However if we include a single quote in the email then we are redirected to the sign up page indicating that the `'` altered how the back end processed the username. This tells us that the email field is potentially vulnerable to `SQL Injection`.
 
 Given that this is a SQLI vulnerability in the login form we can potentially use it to bypass authentication and login as admin!
 
@@ -92,7 +92,7 @@ For this we can use the payload
 admin' or  '1' = '1' --
 ```
 
-What this does is alter the back end SQL statement return true if the username is `admin` or if the statement `'1' = '1'` is true which it always is. the `--` the comments out all the rest of the SQL query that checks for the password. When we use this payload within the email parameter we get a `LOGIN SUCCESSFUL WELCOME ADMIN` response:
+What this does is alter the back end SQL statement to return true if the username is `admin` or if the statement `'1' = '1'` is true which it always is. The `--` then comments out all the rest of the SQL query that checks for the password. When we use this payload within the email parameter we get a `LOGIN SUCCESSFUL WELCOME ADMIN` response:
 
 ![SQLI Test](image-10.png)
 
