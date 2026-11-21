@@ -4,7 +4,7 @@
 
 | Field | Details |
 | - | - |
-| Platform | [Hack The Box](https://app.hackthebox.com/machines/Phantom) |
+| Platform | [Hack The Box](https://app.hackthebox.com/machines/Sendai) |
 | Difficulty | Medium |
 | OS | Windows |
 | Author | ByteFragment |
