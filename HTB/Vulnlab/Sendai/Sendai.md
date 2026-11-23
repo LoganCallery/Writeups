@@ -8,7 +8,7 @@
 | Difficulty | Medium |
 | OS | Windows |
 | Author | ByteFragment |
-| Date | November 12th 2026 |
+| Date | November 20th 2026 |
 
 
 ## Enumeration.
